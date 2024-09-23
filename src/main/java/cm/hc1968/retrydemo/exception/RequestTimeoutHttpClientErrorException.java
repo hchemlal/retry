@@ -1,4 +1,4 @@
-package vn.cloud.restclientretrydemo.exception;
+package cm.hc1968.retrydemo.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;

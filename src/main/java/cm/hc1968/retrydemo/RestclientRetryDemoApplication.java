@@ -1,4 +1,4 @@
-package vn.cloud.restclientretrydemo;
+package cm.hc1968.retrydemo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
-import vn.cloud.restclientretrydemo.hello.HelloServiceClient;
+import cm.hc1968.retrydemo.service.SpireClient;
 
 @SpringBootApplication
 @EnableRetry
@@ -20,10 +20,18 @@ public class RestclientRetryDemoApplication {
 	}
 
 	@Bean
-	ApplicationRunner applicationRunner(HelloServiceClient helloServiceClient) {
+	ApplicationRunner applicationRunner(SpireClient spireClient) {
 		return args -> {
-			String hello = helloServiceClient.getHello();
+			String hello = spireClient.getHello();
 			log.info("Result: %s".formatted(hello));
+
+			//String hello = helloServiceClient.nonRetriableException();
+			String retriableException = spireClient.retriableException();
+			log.info("Result: %s".formatted(retriableException));
+
+
 		};
 	}
+
+
 }

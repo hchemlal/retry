@@ -1,34 +1,29 @@
-package vn.cloud.restclientretrydemo.hello;
+package cm.hc1968.retrydemo.hello;
 
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
-import org.springframework.boot.web.client.ClientHttpRequestFactories;
-import org.springframework.boot.web.client.ClientHttpRequestFactorySettings;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.JdkClientHttpRequestFactory;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
-import vn.cloud.restclientretrydemo.configuration.annotation.RestClientRetryable;
-import vn.cloud.restclientretrydemo.exception.RequestTimeoutHttpClientErrorException;
-import vn.cloud.restclientretrydemo.exception.TooEarlyHttpClientErrorException;
+import org.springframework.web.client.support.RestClientAdapter;
+import org.springframework.web.service.invoker.HttpServiceProxyFactory;
+import cm.hc1968.retrydemo.exception.RequestTimeoutHttpClientErrorException;
+import cm.hc1968.retrydemo.exception.TooEarlyHttpClientErrorException;
+import cm.hc1968.retrydemo.service.SpireClient;
 
-import java.time.Duration;
+@Configuration
+public class HelloServiceClientConfig {
 
-@Service
-public class HelloServiceClient {
+//    private final RestClient restClient;
+//    private final  SpireService spireService;
 
-    private final RestClient restClient;
-
-    public HelloServiceClient(RestClient.Builder builder) {
+    @Bean
+    public SpireClient spireClientConfig(RestClient.Builder builder) {
 //        ClientHttpRequestFactorySettings requestFactorySettings = ClientHttpRequestFactorySettings.DEFAULTS
 //                .withConnectTimeout(Duration.ofSeconds(1L))
 //                .withReadTimeout(Duration.ofSeconds(5L));
@@ -46,7 +41,7 @@ public class HelloServiceClient {
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 
 
-        this.restClient = builder
+        RestClient restClient = builder
                 .baseUrl("http://localhost:8080")
                 .requestFactory(requestFactory)
                 .requestInterceptor(
@@ -57,13 +52,47 @@ public class HelloServiceClient {
                             return response;
                         })
                 .build();
+
+        /* The following to take advantage of "HTTP service as a Java interface with @HttpExchange methods." */
+        RestClientAdapter adapter = RestClientAdapter.create(restClient);
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
+
+       return factory.createClient(SpireClient.class);
     }
 
-    @RestClientRetryable
-    public String getHello() {
-        return this.restClient.get()
-                .uri("/hello")
-                .retrieve()
-                .body(String.class);
-    }
+//    public SpireService getSpireService(){
+//        return this.spireService;
+//    }
+
+//    @RestClientRetryable(recover = "recoverMe")
+//    public String getHello() {
+//        return this.restClient.get()
+//                .uri("/hello")
+//                .retrieve()
+//                .body(String.class);
+//    }
+//
+//    @RestClientRetryable(recover = "recoverMe")
+//    public String nonRetriableException() {
+//        return this.restClient.get()
+//                .uri("/nonRetriableException")
+//                .retrieve()
+//                .body(String.class);
+//    }
+//
+//    @RestClientRetryable(recover = "recoverMe")
+//    public String retriableException() {
+//        return this.restClient.get()
+//                .uri("/retriableException")
+//                .retrieve()
+//                .body(String.class);
+//    }
+
+//    @Recover
+//    public String recoverMe() {
+//        return ">>>>>>>>>>>I have recovered!!";
+//    }
+
+
+
 }
