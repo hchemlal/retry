@@ -22,14 +22,8 @@ public class RestclientRetryDemoApplication {
 	@Bean
 	ApplicationRunner applicationRunner(SpireClient spireClient) {
 		return args -> {
-			String hello = spireClient.getHello();
+			String hello = spireClient.getFromSpire();
 			log.info("Result: %s".formatted(hello));
-
-			//String hello = helloServiceClient.nonRetriableException();
-			String retriableException = spireClient.retriableException();
-			log.info("Result: %s".formatted(retriableException));
-
-
 		};
 	}
 

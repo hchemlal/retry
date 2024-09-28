@@ -21,7 +21,6 @@ import java.lang.annotation.Target;
  * Spire retriable using exponential backoff strategy
  */
 @Retryable(
-        maxAttempts=5,
         backoff=@Backoff(delay=1000, multiplier=3),
         retryFor = {
                 RequestTimeoutHttpClientErrorException.class,
