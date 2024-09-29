@@ -1,4 +1,4 @@
-package cm.hc1968.retrydemo.hello;
+package cm.hc1968.retrydemo.retrydemo.hello;
 
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
@@ -12,9 +12,9 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
-import cm.hc1968.retrydemo.exception.RequestTimeoutHttpClientErrorException;
-import cm.hc1968.retrydemo.exception.TooEarlyHttpClientErrorException;
-import cm.hc1968.retrydemo.service.SpireClient;
+import cm.hc1968.retrydemo.retrydemo.exception.RequestTimeoutHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.exception.TooEarlyHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.service.SpireClient;
 
 @Configuration
 public class HelloServiceClientConfig {

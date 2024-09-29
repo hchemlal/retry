@@ -1,4 +1,4 @@
-package cm.hc1968.retrydemo.configuration.annotation;
+package cm.hc1968.retrydemo.retrydemo.configuration.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.retry.annotation.Backoff;

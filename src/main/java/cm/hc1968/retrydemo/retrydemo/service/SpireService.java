@@ -1,13 +1,13 @@
-package cm.hc1968.retrydemo.service;
+package cm.hc1968.retrydemo.retrydemo.service;
 
-import cm.hc1968.retrydemo.configuration.annotation.SpireExponentialBackoffRetry;
-import cm.hc1968.retrydemo.exception.RequestTimeoutHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.configuration.annotation.SpireExponentialBackoffRetry;
+import cm.hc1968.retrydemo.retrydemo.exception.RequestTimeoutHttpClientErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.stereotype.Service;
 
-import static cm.hc1968.retrydemo.service.SpireTestConstants.RECOVERED_FROM_NON_RETRIABLE_EXCEPTIONS;
-import static cm.hc1968.retrydemo.service.SpireTestConstants.RECOVERED_FROM_RETRIABLE_EXCEPTIONS;
+import static cm.hc1968.retrydemo.retrydemo.service.SpireTestConstants.RECOVERED_FROM_NON_RETRIABLE_EXCEPTIONS;
+import static cm.hc1968.retrydemo.retrydemo.service.SpireTestConstants.RECOVERED_FROM_RETRIABLE_EXCEPTIONS;
 
 @Service
 public class SpireService {

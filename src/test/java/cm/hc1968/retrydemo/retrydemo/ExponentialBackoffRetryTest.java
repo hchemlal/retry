@@ -1,20 +1,19 @@
-package cm.hc1968.retrydemo;
+package cm.hc1968.retrydemo.retrydemo;
 
 
-import cm.hc1968.retrydemo.exception.RequestTimeoutHttpClientErrorException;
-import cm.hc1968.retrydemo.service.SpireClient;
-import cm.hc1968.retrydemo.service.SpireMessage;
-import cm.hc1968.retrydemo.service.SpireService;
+import cm.hc1968.retrydemo.retrydemo.exception.RequestTimeoutHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.service.SpireClient;
+import cm.hc1968.retrydemo.retrydemo.service.SpireMessage;
+import cm.hc1968.retrydemo.retrydemo.service.SpireService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
 
-import static cm.hc1968.retrydemo.service.SpireTestConstants.*;
+import static cm.hc1968.retrydemo.retrydemo.service.SpireTestConstants.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 

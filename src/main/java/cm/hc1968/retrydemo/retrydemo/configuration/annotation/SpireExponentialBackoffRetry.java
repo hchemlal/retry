@@ -1,4 +1,4 @@
-package cm.hc1968.retrydemo.configuration.annotation;
+package cm.hc1968.retrydemo.retrydemo.configuration.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.retry.annotation.Backoff;
@@ -6,8 +6,8 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
-import cm.hc1968.retrydemo.exception.RequestTimeoutHttpClientErrorException;
-import cm.hc1968.retrydemo.exception.TooEarlyHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.exception.RequestTimeoutHttpClientErrorException;
+import cm.hc1968.retrydemo.retrydemo.exception.TooEarlyHttpClientErrorException;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,13 +1,10 @@
-package cm.hc1968.retrydemo;
+package cm.hc1968.retrydemo.retrydemo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
-import cm.hc1968.retrydemo.service.SpireClient;
 
 @SpringBootApplication
 @EnableRetry
@@ -19,13 +16,13 @@ public class RestclientRetryDemoApplication {
 		SpringApplication.run(RestclientRetryDemoApplication.class, args);
 	}
 
-	@Bean
-	ApplicationRunner applicationRunner(SpireClient spireClient) {
-		return args -> {
-			String hello = spireClient.getFromSpire();
-			log.info("Result: %s".formatted(hello));
-		};
-	}
+//	@Bean
+//	ApplicationRunner applicationRunner(SpireClient spireClient) {
+//		return args -> {
+//			String hello = spireClient.getFromSpire();
+//			log.info("Result: %s".formatted(hello));
+//		};
+//	}
 
 
 }
